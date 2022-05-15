@@ -6,26 +6,41 @@ import { AddJob } from './src/components/AddJob';
 import { Employees } from './src/components/Employees';
 import { Reports } from './src/components/Reports';
 import { AssignTasks } from './src/components/AssignTasks';
+import { Jobs } from './src/components/Jobs';
 
 export default function App() {
 
-  // const { add_job, employees, reports, assign_tasks } = some_data.mydata.views;
-
-  const [ viewsData, setViewsData ] = React.useState({
-    add_job: false,
-    employees: false,
-    reports: false,
-    assign_tasks: false,
+  const [  my_data, set_my_data ] = React.useState({
+      jobs: [],
+    employees: [
+        {
+            id: Math.random(),
+            name: "Romeo",
+            task: {
+                job: "",
+                task_name: "",
+                status: "",
+            },
+        },
+    ],
   })
 
-  const resetViews = () => {
-    setViewsData({
-      add_job: false,
-      employees: false,
-      reports: false,
-      assign_tasks: false,
+  const add_job_func = (jb) => {
+    set_my_data({
+      ...my_data,
+      jobs: [
+        ...my_data.jobs,
+        {...jb}
+      ]
     })
+    console.log("App data", my_data.jobs)
   }
+
+  // const { add_job, employees, reports, assign_tasks } = some_data.mydata.views;
+
+  const [ viewsData, setViewsData ] = React.useState({ add_job: false, employees: false, reports: false, assign_tasks: false, jobs: false })
+
+  const resetViews = () => { setViewsData({ add_job: false, employees: false, reports: false, assign_tasks: false, }) }
 
   const handleBtnClick = (ev) => {
     switch(ev) {
@@ -48,16 +63,21 @@ export default function App() {
         resetViews();
         setViewsData({...viewsData, assign_tasks: true});
       break;
+      case "jobs":
+        resetViews();
+        setViewsData({...viewsData, jobs: true});
+      break;
     }
   }
   return (          
       <View style={styles.container}>
         <Text style={styles.paragraph}> Valentine's Garage </Text>
         {
-          viewsData.add_job ? <AddJob handleBtnClick={handleBtnClick} />
+          viewsData.add_job ? <AddJob handleBtnClick={handleBtnClick} add_job_func={add_job_func} />
           : viewsData.employees ? <Employees handleBtnClick={handleBtnClick} />
           : viewsData.reports ? <Reports handleBtnClick={handleBtnClick} />
           : viewsData.assign_tasks ? <AssignTasks handleBtnClick={handleBtnClick} />
+          :viewsData.jobs ? <Jobs handleBtnClick={handleBtnClick} jobs = {my_data.jobs} />
           : <Main handleBtnClick={handleBtnClick} />
         }
       </View>

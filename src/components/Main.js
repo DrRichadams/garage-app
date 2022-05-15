@@ -17,6 +17,9 @@ export const Main = ({handleBtnClick}) => {
             <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("assign_tasks")}>
                 <Text>Assign tasks</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("jobs")}>
+                <Text>jobs</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         marginTop: 10,
         padding: 12,
-        alignItems: "center",
+        alignItems: "flex-start",
         fontFamily: "sans-serif",
         borderRadius: 6,
       },
