@@ -33,21 +33,32 @@ export default function App() {
   React.useEffect(() => {loadJobs}, [])
 
   const [  my_data, set_my_data ] = React.useState({
-      jobs: [],
+      jobs: [
+        { 
+          id: Math.random(),
+          make: "Nissan",
+          location: "onsite", //offsite
+          tasks: [
+              { id: Math.random(), task_name: "Wheel alignment", status: "pending", assigned_employee: "", report: "" },
+              { id: Math.random(), task_name :"Brakes diagnostics", status: "pending", assigned_employee: "", report: "" },
+              { id: Math.random(), task_name: "Spray painting", status: "pending", assigned_employee: "", report: "" },
+          ]
+      }
+      ],
       employees: [
-          { id: Math.random(), name: "Romeo", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "James", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Thomas", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Aron", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Sabastian", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Miles", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Tod", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "John", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Nathan", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Carlos", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Oliver", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Danny", task: { job: "", task_name: "", status: "", }, },
-          { id: Math.random(), name: "Ronnie", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Romeo", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "James", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Thomas", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Aron", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Sabastian", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Miles", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Tod", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "John", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Nathan", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Carlos", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Oliver", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Danny", task: { job: "", task_name: "", hasTask: false, status: "", }, },
+          { id: Math.random(), name: "Ronnie", task: { job: "", task_name: "", hasTask: false, status: "", }, },
       ],
   })
 
