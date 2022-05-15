@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TextInput } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Main } from './src/components/Main';
 import { AddJob } from './src/components/AddJob';
@@ -10,29 +11,55 @@ import { Jobs } from './src/components/Jobs';
 
 export default function App() {
 
+  const saveData = async (data_to_set) => {
+    try{
+      const json_data = JSON.stringify(data_to_set)
+      await AsyncStorage.setItem("@jobs", json_data)
+      console.log("Saved to async storage")
+    } catch(e) { console.log(e) }
+  }
+
+  const loadJobs = async () => {
+    try{
+      const tempJobs = await AsyncStorage.getItem("@jobs")
+      // if(tempJobs && JSON.parse(tempJobs).length) {
+      if(true) {
+        set_my_data({...my_data, jobs: [ ...tempJobs ]})
+        console.log("Loadedfrom async storage")
+      }
+    } catch(e) { console.log(r) }
+  }
+
+  React.useEffect(() => {loadJobs}, [])
+
   const [  my_data, set_my_data ] = React.useState({
       jobs: [],
-    employees: [
-        {
-            id: Math.random(),
-            name: "Romeo",
-            task: {
-                job: "",
-                task_name: "",
-                status: "",
-            },
-        },
-    ],
+      employees: [
+          { id: Math.random(), name: "Romeo", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "James", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Thomas", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Aron", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Sabastian", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Miles", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Tod", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "John", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Nathan", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Carlos", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Oliver", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Danny", task: { job: "", task_name: "", status: "", }, },
+          { id: Math.random(), name: "Ronnie", task: { job: "", task_name: "", status: "", }, },
+      ],
   })
 
-  const add_job_func = (jb) => {
-    set_my_data({
+  const add_job_func = async (jb) => {
+    await set_my_data({
       ...my_data,
       jobs: [
         ...my_data.jobs,
         {...jb}
       ]
     })
+    saveData(my_data.jobs)
     console.log("App data", my_data.jobs)
   }
 
@@ -76,7 +103,7 @@ export default function App() {
           viewsData.add_job ? <AddJob handleBtnClick={handleBtnClick} add_job_func={add_job_func} />
           : viewsData.employees ? <Employees handleBtnClick={handleBtnClick} />
           : viewsData.reports ? <Reports handleBtnClick={handleBtnClick} />
-          : viewsData.assign_tasks ? <AssignTasks handleBtnClick={handleBtnClick} />
+          : viewsData.assign_tasks ? <AssignTasks handleBtnClick={handleBtnClick} employees={my_data.employees} jobs={my_data.jobs} />
           :viewsData.jobs ? <Jobs handleBtnClick={handleBtnClick} jobs = {my_data.jobs} />
           : <Main handleBtnClick={handleBtnClick} />
         }
