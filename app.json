@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "garage-app",
+    "name": "ValentinesGarage",
     "slug": "snack-e816e6d8-0645-43f5-909b-58ad8a999bfe",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -20,6 +20,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "garageapp.valentine",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
