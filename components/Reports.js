@@ -1,26 +1,17 @@
 import React from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import { DataContext } from "../contexts/DataContext"
 
-export const Jobs = ({handleBtnClick, jobs}) => {
+export const Reports = ({handleBtnClick}) => {
     return(
         <View>
-            <Text>Jobs</Text>
-            <View>
-                {
-                    jobs && jobs.map((item, index) => (
-                        <TouchableOpacity key={index} style = {styles.job_box}>
-                            <Text style={{color: "#fff"}}>{item.make}</Text>
-                        </TouchableOpacity>
-                    ))
-                }
-            </View>
+            <Text>Reports</Text>
             <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("reset")}>
                 <Text style={styles.btn_text}>GO BACK</Text>
             </TouchableOpacity>
         </View>
     )
 }
+
 const styles = StyleSheet.create({
     btn: {
         backgroundColor: "orangered",
@@ -42,10 +33,5 @@ const styles = StyleSheet.create({
           borderLeftWidth: 5,
           borderStyle: "solid",
           paddingLeft: 12
-      },
-      job_box: {
-          backgroundColor: "#01a2e79c",
-          marginBottom: 5,
-          padding: 8,
       }
 })

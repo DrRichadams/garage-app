@@ -1,25 +1,25 @@
-import React from "react"
+import React, { useState } from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 
-export const Main = ({handleBtnClick}) => {
+export const Menu = ({handleBtnClick}) => {
     return(
         <View>
             <Text style={styles.main_title}>Garage menu</Text>
             <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("add_job")}>
                 <Text>Add job</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("employees")}>
-                <Text>Employees</Text>
+            <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("assign_job")}>
+                <Text>Assign job</Text>
             </TouchableOpacity>
+            {/* <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("employees")}>
+                <Text>Employees</Text>
+            </TouchableOpacity> */}
             <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("reports")}>
                 <Text>Reports</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("assign_tasks")}>
-                <Text>Assign tasks</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("jobs")}>
+            {/* <TouchableOpacity style={styles.btn} onPress={() => handleBtnClick("jobs")}>
                 <Text>jobs</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     )
 }

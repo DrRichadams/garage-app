@@ -9,7 +9,9 @@ export const AddJob = ({handleBtnClick, add_job_func}) => {
         id: Math.random(),
         make: "",
         location: "", //offsite - onsite
-        tasks: []
+        tasks: [],
+        report: "",
+        isAssigned: false,
     })
 
     const [ tempTask, setTempTask ] = React.useState("")
